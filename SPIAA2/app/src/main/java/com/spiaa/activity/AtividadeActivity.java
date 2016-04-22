@@ -47,6 +47,7 @@ public class AtividadeActivity extends AppCompatActivity implements View.OnClick
     private Spinner spinnerTiposImoveis;
     private EditText endereco;
     private EditText numeroEndereco;
+    private EditText complemento;
     private RadioGroup radioGroupObservacoes;
     private RadioButton recebido;
     private RadioButton fechado;
@@ -74,6 +75,7 @@ public class AtividadeActivity extends AppCompatActivity implements View.OnClick
         recebido = (RadioButton) findViewById(R.id.radio_recebido);
         fechado = (RadioButton) findViewById(R.id.radio_fechado);
         resgatado = (RadioButton) findViewById(R.id.radio_resgatado);
+        complemento = (EditText)findViewById(R.id.complemento_atividade);
 
         spinnerQuarteiroes = (Spinner) findViewById(R.id.dropdown_quarteiroes);
 
@@ -275,10 +277,13 @@ public class AtividadeActivity extends AppCompatActivity implements View.OnClick
             } else {
                 if (obterObservacaoSelecionada().isEmpty()) {
                     Snackbar.make(findViewById(R.id.linear_atividade), "Selecione Recebido, Fechado ou Resgatado", Snackbar.LENGTH_LONG).show();
+                } else if (complemento.getText().toString().isEmpty() || complemento.getText().toString().trim().equals("")) {
+                    Snackbar.make(findViewById(R.id.complemento_atividade), "Preencha o campo Complemento", Snackbar.LENGTH_LONG).show();
                 } else {
                     atividade.setQuarteirao(obterQuarteiraoSelecionado());
                     atividade.setTipoImoveis(obterTipoImovelSelecionado());
                     atividade.setEndereco(endereco.getText().toString());
+                    atividade.setComplemento(complemento.getText().toString());
                     atividade.setNumero(numeroEndereco.getText().toString());
                     atividade.setObservacao(obterObservacaoSelecionada());
                     TratamentoAntiVetorial tav = new TratamentoAntiVetorial();
@@ -294,7 +299,7 @@ public class AtividadeActivity extends AppCompatActivity implements View.OnClick
                         } catch (Exception e) {
                             Log.e("SPIAA", "Erro no INSERT de Atividade", e);
                         }
-                    }else{
+                    } else {
                         //Update da atividade
                         try {
                             new AtividadeDAO(this).update(atividade);

@@ -98,5 +98,6 @@
     <string name="rua">Rua/Avenida/Travessa</string>
     <string name="numero_endereco">Número</string>
     <string name="atualizar_boletim">ATUALIZAR</string>
+    <string name="complemento_atividade">complemento</string>
 
 </resources>

@@ -13,6 +13,7 @@ public class Atividade extends BaseEntity implements Serializable{
     public static final String TABLE_NAME = "atividade";
     public static final String ID = "_id";
     public static final String ENDERECO = "endereco";
+    public static final String COMPLEMENTO = "complemento";
     public static final String NUMERO = "numero";
     public static final String OBSERVACAO = "observacao";
     public static final String LATITUDE = "latitude";
@@ -24,6 +25,7 @@ public class Atividade extends BaseEntity implements Serializable{
 
     //Atributos
     String endereco;
+    String complemento;
     Quarteirao quarteirao;
     String numero;
     String observacao;
@@ -40,10 +42,15 @@ public class Atividade extends BaseEntity implements Serializable{
         return endereco;
     }
 
+    public String getComplemento(){ return complemento; }
+
     public void setEndereco(String endereco) {
         this.endereco = endereco;
     }
 
+    public  void setComplemento(String complemento){
+        this.complemento = complemento;
+    }
     public Quarteirao getQuarteirao() {
         return quarteirao;
     }

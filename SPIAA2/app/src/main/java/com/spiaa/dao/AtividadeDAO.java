@@ -35,6 +35,7 @@ public class AtividadeDAO implements BaseDAO<Atividade> {
         ContentValues content = new ContentValues();
 
         content.put(Atividade.ENDERECO, atividade.getEndereco());
+        content.put(Atividade.COMPLEMENTO, atividade.getComplemento());
         content.put(Atividade.NUMERO, atividade.getNumero());
         content.put(Atividade.OBSERVACAO, atividade.getObservacao());
         content.put(Atividade.INSPECIONADO, atividade.getInspecionado());
@@ -84,22 +85,24 @@ public class AtividadeDAO implements BaseDAO<Atividade> {
         SQLiteDatabase sqlLite = new DatabaseHelper(context).getReadableDatabase();
         String where = Atividade.ID + " = ?";
 
-        String[] colunas = new String[]{Atividade.ID, Atividade.ENDERECO, Atividade.NUMERO,
+        String[] colunas = new String[]{Atividade.ID, Atividade.ENDERECO, Atividade.COMPLEMENTO, Atividade.NUMERO,
                 Atividade.OBSERVACAO, Atividade.INSPECIONADO, Atividade.LATITUDE, Atividade.LONGITUDE,
                 Atividade.TIPO_IMOVEL, Atividade.TRATAMENTO_ANTIVETORIAL, Atividade.QUARTEIRAO};
         String argumentos[] = new String[]{entity.getId().toString()};
         cursor = sqlLite.query(Atividade.TABLE_NAME, colunas, where, argumentos, null, null, null);
 
         if (cursor != null && cursor.getCount() > 0) {
+            int i = 0;
             cursor.moveToFirst();
             atividade = new Atividade();
-            atividade.setId(cursor.getLong(0));
-            atividade.setEndereco(cursor.getString(1));
-            atividade.setNumero(cursor.getString(2));
-            atividade.setObservacao(cursor.getString(3));
-            atividade.setInspecionado(cursor.getInt(4));
-            atividade.setLatitude(cursor.getString(5));
-            atividade.setLongitude(cursor.getString(6));
+            atividade.setId(cursor.getLong(++i));
+            atividade.setEndereco(cursor.getString(++i));
+            atividade.setComplemento(cursor.getString(++i));
+            atividade.setNumero(cursor.getString(++i));
+            atividade.setObservacao(cursor.getString(++i));
+            atividade.setInspecionado(cursor.getInt(++i));
+            atividade.setLatitude(cursor.getString(++i));
+            atividade.setLongitude(cursor.getString(++i));
 
             try {
                 //TipoImóveis
@@ -145,14 +148,16 @@ public class AtividadeDAO implements BaseDAO<Atividade> {
             atividadeList = new ArrayList<>();
 
             while (!cursor.isAfterLast()) {
+                int i = 0;
                 Atividade atividade = new Atividade();
-                atividade.setId(cursor.getLong(0));
-                atividade.setEndereco(cursor.getString(1));
-                atividade.setNumero(cursor.getString(2));
-                atividade.setObservacao(cursor.getString(3));
-                atividade.setInspecionado(cursor.getInt(4));
-                atividade.setLatitude(cursor.getString(5));
-                atividade.setLongitude(cursor.getString(6));
+                atividade.setId(cursor.getLong(++i));
+                atividade.setEndereco(cursor.getString(++i));
+                atividade.setComplemento(cursor.getString(++i));
+                atividade.setNumero(cursor.getString(++i));
+                atividade.setObservacao(cursor.getString(++i));
+                atividade.setInspecionado(cursor.getInt(++i));
+                atividade.setLatitude(cursor.getString(++i));
+                atividade.setLongitude(cursor.getString(++i));
 
                 try {
                     //TipoImóveis
@@ -211,13 +216,15 @@ public class AtividadeDAO implements BaseDAO<Atividade> {
 
             while (!cursor.isAfterLast()) {
                 Atividade atividade = new Atividade();
-                atividade.setId(cursor.getLong(0));
-                atividade.setEndereco(cursor.getString(1));
-                atividade.setNumero(cursor.getString(2));
-                atividade.setObservacao(cursor.getString(3));
-                atividade.setInspecionado(cursor.getInt(4));
-                atividade.setLatitude(cursor.getString(5));
-                atividade.setLongitude(cursor.getString(6));
+                int i = 0;
+                atividade.setId(cursor.getLong(++i));
+                atividade.setEndereco(cursor.getString(++i));
+                atividade.setComplemento(cursor.getString(++i));
+                atividade.setNumero(cursor.getString(++i));
+                atividade.setObservacao(cursor.getString(++i));
+                atividade.setInspecionado(cursor.getInt(++i));
+                atividade.setLatitude(cursor.getString(++i));
+                atividade.setLongitude(cursor.getString(++i));
 
                 try {
                     //TipoImóveis
@@ -276,6 +283,7 @@ public class AtividadeDAO implements BaseDAO<Atividade> {
         ContentValues content = new ContentValues();
 
         content.put(Atividade.ENDERECO, atividade.getEndereco());
+        content.put(Atividade.COMPLEMENTO, atividade.getComplemento());
         content.put(Atividade.INSPECIONADO, atividade.getInspecionado());
         content.put(Atividade.LATITUDE, atividade.getLatitude());
         content.put(Atividade.LONGITUDE, atividade.getLongitude());
